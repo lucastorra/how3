@@ -34,12 +34,7 @@
             this.buttonExcluir = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.btSalvarCliente = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxVeiculo = new System.Windows.Forms.ComboBox();
-            this.IDMovimentacao = new System.Windows.Forms.Label();
-            this.textBoxPlaca = new System.Windows.Forms.MaskedTextBox();
-            this.labelData = new System.Windows.Forms.Label();
-            this.textBoxDataLocacao = new System.Windows.Forms.MaskedTextBox();
+            this.dataGridViewMovimentacoes = new System.Windows.Forms.DataGridView();
             this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCodigoVeiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnVeiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,8 +43,13 @@
             this.ColumnDataMovto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnOperacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPlaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxVeiculo = new System.Windows.Forms.ComboBox();
+            this.IDMovimentacao = new System.Windows.Forms.Label();
+            this.textBoxPlaca = new System.Windows.Forms.MaskedTextBox();
+            this.labelData = new System.Windows.Forms.Label();
+            this.textBoxDataLocacao = new System.Windows.Forms.MaskedTextBox();
             this.textBoxClientes = new System.Windows.Forms.MaskedTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimentacoes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,10 +109,10 @@
             this.btSalvarCliente.UseVisualStyleBackColor = true;
             this.btSalvarCliente.Click += new System.EventHandler(this.btSalvarCliente_Click);
             // 
-            // dataGridView1
+            // dataGridViewMovimentacoes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewMovimentacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMovimentacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
             this.ColumnCodigoVeiculo,
             this.ColumnVeiculo,
@@ -121,53 +121,12 @@
             this.ColumnDataMovto,
             this.ColumnOperacao,
             this.ColumnPlaca});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 149);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(647, 275);
-            this.dataGridView1.TabIndex = 16;
-            // 
-            // comboBoxVeiculo
-            // 
-            this.comboBoxVeiculo.FormattingEnabled = true;
-            this.comboBoxVeiculo.Location = new System.Drawing.Point(122, 12);
-            this.comboBoxVeiculo.Name = "comboBoxVeiculo";
-            this.comboBoxVeiculo.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxVeiculo.TabIndex = 17;
-            // 
-            // IDMovimentacao
-            // 
-            this.IDMovimentacao.AutoSize = true;
-            this.IDMovimentacao.Location = new System.Drawing.Point(284, 18);
-            this.IDMovimentacao.Name = "IDMovimentacao";
-            this.IDMovimentacao.Size = new System.Drawing.Size(0, 13);
-            this.IDMovimentacao.TabIndex = 18;
-            // 
-            // textBoxPlaca
-            // 
-            this.textBoxPlaca.Location = new System.Drawing.Point(122, 42);
-            this.textBoxPlaca.Mask = "LLL-9999";
-            this.textBoxPlaca.Name = "textBoxPlaca";
-            this.textBoxPlaca.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPlaca.TabIndex = 19;
-            // 
-            // labelData
-            // 
-            this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(22, 97);
-            this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(75, 13);
-            this.labelData.TabIndex = 21;
-            this.labelData.Text = "Data Locação";
-            // 
-            // textBoxDataLocacao
-            // 
-            this.textBoxDataLocacao.Enabled = false;
-            this.textBoxDataLocacao.Location = new System.Drawing.Point(123, 94);
-            this.textBoxDataLocacao.Mask = "00/00/0000 90:00";
-            this.textBoxDataLocacao.Name = "textBoxDataLocacao";
-            this.textBoxDataLocacao.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDataLocacao.TabIndex = 22;
-            this.textBoxDataLocacao.ValidatingType = typeof(System.DateTime);
+            this.dataGridViewMovimentacoes.Location = new System.Drawing.Point(12, 149);
+            this.dataGridViewMovimentacoes.Name = "dataGridViewMovimentacoes";
+            this.dataGridViewMovimentacoes.Size = new System.Drawing.Size(647, 275);
+            this.dataGridViewMovimentacoes.TabIndex = 16;
+            this.dataGridViewMovimentacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridViewMovimentacoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMovimentacoes_CellContentClick);
             // 
             // ColumnId
             // 
@@ -216,6 +175,49 @@
             this.ColumnPlaca.HeaderText = "Placa";
             this.ColumnPlaca.Name = "ColumnPlaca";
             // 
+            // comboBoxVeiculo
+            // 
+            this.comboBoxVeiculo.FormattingEnabled = true;
+            this.comboBoxVeiculo.Location = new System.Drawing.Point(122, 12);
+            this.comboBoxVeiculo.Name = "comboBoxVeiculo";
+            this.comboBoxVeiculo.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxVeiculo.TabIndex = 17;
+            // 
+            // IDMovimentacao
+            // 
+            this.IDMovimentacao.AutoSize = true;
+            this.IDMovimentacao.Location = new System.Drawing.Point(284, 18);
+            this.IDMovimentacao.Name = "IDMovimentacao";
+            this.IDMovimentacao.Size = new System.Drawing.Size(0, 13);
+            this.IDMovimentacao.TabIndex = 18;
+            // 
+            // textBoxPlaca
+            // 
+            this.textBoxPlaca.Location = new System.Drawing.Point(122, 42);
+            this.textBoxPlaca.Mask = "LLL-9999";
+            this.textBoxPlaca.Name = "textBoxPlaca";
+            this.textBoxPlaca.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPlaca.TabIndex = 19;
+            // 
+            // labelData
+            // 
+            this.labelData.AutoSize = true;
+            this.labelData.Location = new System.Drawing.Point(22, 97);
+            this.labelData.Name = "labelData";
+            this.labelData.Size = new System.Drawing.Size(75, 13);
+            this.labelData.TabIndex = 21;
+            this.labelData.Text = "Data Locação";
+            // 
+            // textBoxDataLocacao
+            // 
+            this.textBoxDataLocacao.Enabled = false;
+            this.textBoxDataLocacao.Location = new System.Drawing.Point(123, 94);
+            this.textBoxDataLocacao.Mask = "00/00/0000 90:00";
+            this.textBoxDataLocacao.Name = "textBoxDataLocacao";
+            this.textBoxDataLocacao.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDataLocacao.TabIndex = 22;
+            this.textBoxDataLocacao.ValidatingType = typeof(System.DateTime);
+            // 
             // textBoxClientes
             // 
             this.textBoxClientes.Location = new System.Drawing.Point(122, 68);
@@ -235,7 +237,7 @@
             this.Controls.Add(this.textBoxPlaca);
             this.Controls.Add(this.IDMovimentacao);
             this.Controls.Add(this.comboBoxVeiculo);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewMovimentacoes);
             this.Controls.Add(this.buttonExcluir);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.btSalvarCliente);
@@ -246,7 +248,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Locações";
             this.Load += new System.EventHandler(this.FormMovimentacao_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimentacoes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,7 +261,7 @@
         private System.Windows.Forms.Button buttonExcluir;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button btSalvarCliente;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewMovimentacoes;
         private System.Windows.Forms.ComboBox comboBoxVeiculo;
         private System.Windows.Forms.Label IDMovimentacao;
         private System.Windows.Forms.MaskedTextBox textBoxPlaca;

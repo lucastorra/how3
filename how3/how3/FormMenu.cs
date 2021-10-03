@@ -25,13 +25,14 @@ namespace how3
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormVeiculos formClientes = new FormVeiculos();
+            FormClientes formClientes = new FormClientes();
             formClientes.ShowDialog();
         }
 
         private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Cadastro em desenvolvimento");
+            FormVeiculo formVeiculos = new FormVeiculo();
+            formVeiculos.ShowDialog();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

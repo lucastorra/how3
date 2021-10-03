@@ -11,9 +11,9 @@ using MySql.Data.MySqlClient;
 
 namespace how3
 {
-    public partial class FormVeiculos : Form
+    public partial class FormClientes : Form
     {
-        public FormVeiculos()
+        public FormClientes()
         {
             InitializeComponent();
         }
@@ -128,18 +128,7 @@ namespace how3
                 Console.WriteLine(ex.Message);
             }
         }
-
-        private void dataGridViewClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewClientes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-            {
-                dataGridViewClientes.CurrentRow.Selected = true;
-                textBoxNome.Text = dataGridViewClientes.Rows[e.RowIndex].Cells["ColumnNome"].FormattedValue.ToString();
-                textBoxDocumento.Text = dataGridViewClientes.Rows[e.RowIndex].Cells["ColumnDocumento"].FormattedValue.ToString();
-                IDCliente.Text = dataGridViewClientes.Rows[e.RowIndex].Cells["ColumnCodigoCliente"].FormattedValue.ToString();
-            }
-        }
-
+        
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
             if (IDCliente.Text == "")
@@ -174,6 +163,17 @@ namespace how3
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void dataGridViewClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewClientes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                dataGridViewClientes.CurrentRow.Selected = true;
+                textBoxNome.Text = dataGridViewClientes.Rows[e.RowIndex].Cells["ColumnNome"].FormattedValue.ToString();
+                textBoxDocumento.Text = dataGridViewClientes.Rows[e.RowIndex].Cells["ColumnDocumento"].FormattedValue.ToString();
+                IDCliente.Text = dataGridViewClientes.Rows[e.RowIndex].Cells["ColumnCodigoCliente"].FormattedValue.ToString();
             }
         }
     }

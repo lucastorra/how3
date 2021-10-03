@@ -109,7 +109,6 @@ namespace how3
                                                                              "STR_TO_DATE('"+ textBoxDataLocacao.Text + "', '%d/%m/%Y %H:%i:%s'), " +
                                                                              1 + ", " +
                                                                              "'"+ textBoxPlaca.Text + "')";
-                    MessageBox.Show(comandoMySql.CommandText);
                     comandoMySql.ExecuteNonQuery();
 
                     realizaConexacoBD.Close(); // Fecho a conexão com o banco
@@ -117,13 +116,15 @@ namespace how3
                 }
                 else
                 {
-                    /*comandoMySql.CommandText = "UPDATE clientes " +
-                                                "  SET documento_cliente = '" + textBoxDocumento.Text + "'," +
-                                                                  " nome = '" + textBoxNome.Text + "'" +
-                                               " WHERE codigo_cliente = " + label3.Text;
+                    comandoMySql.CommandText = "UPDATE movimentacoes " +
+                                                "  SET codigo_veiculo = " + comboBoxVeiculo.SelectedValue + "," +
+                                                "      codigo_cliente = " + idCliente + "," +
+                                                "          data_movto = STR_TO_DATE('"+ textBoxDataLocacao.Text + "', '%d/%m/%Y %H:%i:%s'), " +
+                                                "          placa      =  '" + textBoxPlaca.Text + "'" +
+                                               " WHERE codigo_movto = " + IDMovimentacao.Text;
                     comandoMySql.ExecuteNonQuery();
 
-                    realizaConexacoBD.Close(); */
+                    realizaConexacoBD.Close(); 
                     MessageBox.Show("Locação atualizada com sucesso."); //Exibo mensagem de aviso
                 }
                 
@@ -209,11 +210,11 @@ namespace how3
                                               " INNER JOIN CLIENTES C ON(M.CODIGO_CLIENTE = C.CODIGO_CLIENTE)  ";
                 MySqlDataReader reader = comandoMySql.ExecuteReader();
 
-                dataGridView1.Rows.Clear();//FAZ LIMPAR A TABELA
+                dataGridViewMovimentacoes.Rows.Clear();//FAZ LIMPAR A TABELA
 
                 while (reader.Read())
                 {
-                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();//FAZ UM CAST E CLONA A LINHA DA TABELA
+                    DataGridViewRow row = (DataGridViewRow)dataGridViewMovimentacoes.Rows[0].Clone();//FAZ UM CAST E CLONA A LINHA DA TABELA
                     row.Cells[0].Value = reader.GetString(0);
                     row.Cells[1].Value = reader.GetString(1);
                     row.Cells[2].Value = reader.GetString(2);
@@ -222,7 +223,7 @@ namespace how3
                     row.Cells[5].Value = reader.GetString(5);
                     row.Cells[6].Value = reader.GetString(6);
                     row.Cells[7].Value = reader.GetString(7);
-                    dataGridView1.Rows.Add(row);
+                    dataGridViewMovimentacoes.Rows.Add(row);
                 }
 
                 realizaConexacoBD.Close(); // Fecho a conexão com o banco
@@ -231,6 +232,35 @@ namespace how3
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int lCodigoVeiculo;
+            if (dataGridViewMovimentacoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+
+                dataGridViewMovimentacoes.CurrentRow.Selected = true;
+                IDMovimentacao.Text = dataGridViewMovimentacoes.Rows[e.RowIndex].Cells["ColumnId"].FormattedValue.ToString();
+                textBoxClientes.Text = dataGridViewMovimentacoes.Rows[e.RowIndex].Cells["ColumnCodigoCliente"].FormattedValue.ToString();
+                textBoxDataLocacao.Text = dataGridViewMovimentacoes.Rows[e.RowIndex].Cells["ColumnDataMovto"].FormattedValue.ToString();
+                textBoxPlaca.Text = dataGridViewMovimentacoes.Rows[e.RowIndex].Cells["ColumnPlaca"].FormattedValue.ToString();
+                lCodigoVeiculo = int.Parse(dataGridViewMovimentacoes.Rows[e.RowIndex].Cells["ColumnCodigoVeiculo"].FormattedValue.ToString());
+                comboBoxVeiculo.SelectedValue = lCodigoVeiculo;
+
+//                ColumnVeiculo
+
+                //sColumnCliente
+
+                //ColumnOperacao
+
+
+            }
+        }
+
+        private void dataGridViewMovimentacoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

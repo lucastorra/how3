@@ -1,6 +1,6 @@
 ﻿namespace how3
 {
-    partial class FormVeiculos
+    partial class FormClientes
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -106,7 +106,7 @@
             this.dataGridViewClientes.Name = "dataGridViewClientes";
             this.dataGridViewClientes.Size = new System.Drawing.Size(591, 250);
             this.dataGridViewClientes.TabIndex = 10;
-            this.dataGridViewClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClientes_CellContentClick);
+            this.dataGridViewClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClientes_CellClick);
             // 
             // ColumnCodigoCliente
             // 
